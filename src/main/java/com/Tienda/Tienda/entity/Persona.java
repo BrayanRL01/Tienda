@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -17,24 +18,23 @@ public class Persona implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
-    private long Id;
+    private long id;
     private String nombre;
     private String apellido1;
     private String apellido2;
     private String telefono;
     private String email;
 
-
     @ManyToOne
     @JoinColumn(name = "paises_id")
     private Pais pais;
 
-    public long getId() {
-        return Id;
+    public long getid() {
+        return id;
     }
 
     public void setId(long id) {
-        this.Id = Id;
+        this.id = id;
     }
 
     public String getNombre() {
@@ -84,7 +84,5 @@ public class Persona implements Serializable {
     public void setPais(Pais pais) {
         this.pais = pais;
     }
-
-    
 
 }

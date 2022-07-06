@@ -42,13 +42,19 @@ public class PersonaController {
         personaService.savePersona(persona);
         return "redirect:/personas";
     }
-    
-    @GetMapping
-    public String EditarPersona (@PathVariable("id") Long idPersona, Model model) {
+
+    @GetMapping("/editPersona/{id}")
+    public String EditarPersona(@PathVariable("id") Long idPersona, Model model) {
         Persona persona = personaService.getPersonaById(idPersona);
         List<Pais> listaPais = paisService.listCountry();
         model.addAttribute("persona", persona);
         model.addAttribute("paises", listaPais);
         return "crear";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String EliminarPersona(Persona persona) {
+        personaService.delete(persona.getid());
+        return "redirect:/personas";
     }
 }
