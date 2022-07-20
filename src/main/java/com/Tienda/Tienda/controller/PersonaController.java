@@ -37,7 +37,7 @@ public class PersonaController {
         return "crear";
     }
 
-    @PostMapping("/save")
+    @PostMapping("/saveP")
     public String GuardarPersona(@ModelAttribute Persona persona) {
         personaService.savePersona(persona);
         return "redirect:/personas";

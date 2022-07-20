@@ -31,5 +31,10 @@ public class PersonaService implements IPersonaService {
     public Persona getPersonaById(long id) {
         return personaRepository.findById(id).orElse(null);
     }
+    
+    @Override
+    public Persona findByNombre (String nombre) {
+        return personaRepository.findByNombre(nombre);
+    }
 
 }
