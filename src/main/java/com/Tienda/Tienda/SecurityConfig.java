@@ -21,7 +21,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
-
     }
 
     @Bean
@@ -45,18 +44,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public SecurityConfig(UserService UserPrincipalDetailsService) {
         this.userDetailsService = UserPrincipalDetailsService;
     }
-    
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) {
         auth.authenticationProvider(authenticationProvider());
     }
-    
-    @Override 
-    protected void configure (HttpSecurity http) throws Exception {
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/personas", "/login", "/personasN", "/save", "/crear", "/report/personasJR/download")
                 .hasRole("ADMIN")
-                .antMatchers( "/personas", "/", "/login")
+                .antMatchers("/personas", "/", "/login")
                 .hasAnyRole("USER", "VENDEDOR", "ADMIN")
                 .anyRequest().authenticated()
                 .and()
